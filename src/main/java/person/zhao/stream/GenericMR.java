@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 public class GenericMR {
 
     private InputStream in = System.in;
-    private String splitStr = "\\t";
     private int keyIndex = 0;
 
     public GenericMR() {
@@ -22,28 +21,24 @@ public class GenericMR {
         this.in = in;
     }
 
-    public GenericMR(String splitStr) {
-        this.splitStr = splitStr;
-    }
-    
     public GenericMR(int keyIndex) {
         this.keyIndex = keyIndex;
     }
-    
-    public GenericMR(InputStream in, String splitStr, int keyIndex) {
+
+    public GenericMR(InputStream in, int keyIndex) {
         this.in = in;
-        this.splitStr = splitStr;
         this.keyIndex = keyIndex;
     }
 
     private void reduce(IReducer reducer) throws IOException {
-        BufferedReader bin = new BufferedReader(new InputStreamReader(this.in));
-
-        String line = "";
-        while ((line = bin.readLine()) != null) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(this.in));
+        RecordReader rr = new RecordReader(br, new TabSpliter());
+        while (rr.hasNext()) {
+            String keyValue = rr.peak()[keyIndex];
+            KeyRecordIterator keyIte = new KeyRecordIterator(rr, keyIndex);
+            reducer.reduce(keyValue, keyIte);
         }
 
-        bin.close();
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -52,12 +47,12 @@ public class GenericMR {
             new GenericMR(in).reduce(new IReducer() {
 
                 public void reduce(String key, Iterator<String[]> keyRecordIterator) {
-                       System.out.println(String.format("==== key is [%s] ====", key));
-                       String[] recordArr = null;
-                       while(keyRecordIterator.hasNext()){
-                           recordArr = keyRecordIterator.next();
-                           System.out.println(StringUtils.join(recordArr));
-                       }
+                    System.out.println(String.format("==== key is [%s] ====", key));
+                    String[] recordArr = null;
+                    while (keyRecordIterator.hasNext()) {
+                        recordArr = keyRecordIterator.next();
+                        System.out.println(StringUtils.join(recordArr, ","));
+                    }
                 }
             });
         } catch (IOException e) {
@@ -67,31 +62,87 @@ public class GenericMR {
     }
 }
 
-class KeyRecordIterator{
+class KeyRecordIterator implements Iterator<String[]> {
+    private RecordReader rr = null;
+    private int keyIndex = 0;
+    private String keyValue = null;
 
-    
+    public KeyRecordIterator(RecordReader rr, int keyIndex) {
+        this.rr = rr;
+        this.keyIndex = keyIndex;
+
+        String[] line = peak();
+        this.keyValue = line[keyIndex];
+    }
+
+    public boolean hasNext() {
+        String[] currentLine = rr.peak();
+        if (currentLine == null) {
+            return false;
+        }
+        String currentValue = currentLine[keyIndex];
+        if (!keyValue.equals(currentValue)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String[] next() {
+        String[] line  = rr.peak();
+        rr.next();
+        return line;
+    }
+
+    public String[] peak() {
+        return rr.peak();
+    }
+
+    public void remove() {
+        throw new RuntimeException("remove is unsupport method !");
+    }
+
 }
 
-class RecordReader{
-    BufferedReader br = null;
-    String currentLine = null;
-    String nextLine = null;
-    
-    public RecordReader(BufferedReader br) {
+class RecordReader {
+    private BufferedReader br = null;
+    private String[] currentLine = null;
+    private String[] nextLine = null;
+    private ISpliter spliter = null;
+
+    public RecordReader(BufferedReader br, ISpliter spliter) {
+
+        this.spliter = spliter;
         this.br = br;
-    }
-    
-    public boolean hasNext(){
-        return this.nextLine == null;
-    }
-    
-    public String next(){
+
         try {
-            this.currentLine = br.readLine();
+            this.currentLine = this.spliter.split(br.readLine());
+            this.nextLine = this.spliter.split(br.readLine());
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+
+    }
+
+    public boolean hasNext() {
+        return this.currentLine != null;
+    }
+
+    public String[] next() {
+        try {
+            this.currentLine = this.nextLine;
+            this.nextLine = this.spliter.split(br.readLine());
             return this.currentLine;
         } catch (IOException e) {
             throw new RuntimeException();
         }
+    }
+
+    public String[] peak() {
+        return this.currentLine;
+    }
+
+    public String[] getNext() {
+        return this.nextLine;
     }
 }
 
@@ -99,13 +150,20 @@ interface IReducer {
     public void reduce(String key, Iterator<String[]> recordIterator);
 }
 
-interface ISpliter{
-    public String[] split(String line, String seperatorStr);
+interface ISpliter {
+    public String[] split(String line);
 }
 
-class Spliter implements ISpliter{
-    public String[] split(String line, String seperatorStr) {
-        return line.split(seperatorStr);
+class TabSpliter implements ISpliter {
+    private String seperatorStr = "\t";
+
+    public TabSpliter() {
+    }
+
+    public String[] split(String line) {
+        if (line == null) {
+            return null;
+        }
+        return line.split(this.seperatorStr);
     }
 }
-
