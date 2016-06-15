@@ -1,4 +1,4 @@
-package person.zhao.stream;
+package person.zhao.mapred;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -30,7 +30,7 @@ public class GenericMR {
         this.keyIndex = keyIndex;
     }
 
-    private void reduce(IReducer reducer) throws IOException {
+    public void reduce(IReducer reducer) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(this.in));
         RecordReader rr = new RecordReader(br, new TabSpliter());
         while (rr.hasNext()) {
@@ -38,7 +38,6 @@ public class GenericMR {
             KeyRecordIterator keyIte = new KeyRecordIterator(rr, keyIndex);
             reducer.reduce(keyValue, keyIte);
         }
-
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -56,8 +55,7 @@ public class GenericMR {
                 }
             });
         } catch (IOException e) {
-            System.out.println("some thing is wrong with the IO");
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 }
@@ -88,7 +86,7 @@ class KeyRecordIterator implements Iterator<String[]> {
     }
 
     public String[] next() {
-        String[] line  = rr.peak();
+        String[] line = rr.peak();
         rr.next();
         return line;
     }
@@ -115,8 +113,8 @@ class RecordReader {
         this.br = br;
 
         try {
-            this.currentLine = this.spliter.split(br.readLine());
-            this.nextLine = this.spliter.split(br.readLine());
+            this.currentLine = readNext();
+            this.nextLine = readNext();
         } catch (IOException e) {
             throw new RuntimeException();
         }
@@ -130,7 +128,7 @@ class RecordReader {
     public String[] next() {
         try {
             this.currentLine = this.nextLine;
-            this.nextLine = this.spliter.split(br.readLine());
+            this.nextLine = readNext();
             return this.currentLine;
         } catch (IOException e) {
             throw new RuntimeException();
@@ -143,6 +141,16 @@ class RecordReader {
 
     public String[] getNext() {
         return this.nextLine;
+    }
+    
+    private String[] readNext() throws IOException {
+        String line = br.readLine();
+        if (line == null) {
+            return null;
+        } else if ("".equals(line)) {
+            return readNext();
+        }
+        return this.spliter.split(line);
     }
 }
 

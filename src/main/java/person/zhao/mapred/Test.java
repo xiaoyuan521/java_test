@@ -1,4 +1,4 @@
-package person.zhao.stream;
+package person.zhao.mapred;
 
 import java.io.BufferedReader;
 import java.io.IOException;
