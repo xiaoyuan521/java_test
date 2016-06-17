@@ -5,7 +5,7 @@ base_dir=`cd $sh_dir;cd ..;pwd`;
 
 paths=()
 paths[0]="$base_dir/target/java_test-1.0-SNAPSHOT.jar"
-paths[1]="$base_dir/conf/*"
+paths[1]="$base_dir/target/bin/*.jar"
 
 for path in ${paths[@]};do
   if [ -n "$cp" ]; then
