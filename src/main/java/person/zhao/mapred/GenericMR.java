@@ -31,9 +31,6 @@ public class GenericMR {
     }
 
     public void reduce(IReducer reducer) throws IOException {
-        if(this.in == null){
-            System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
-        }
         BufferedReader br = new BufferedReader(new InputStreamReader(this.in));
         RecordReader rr = new RecordReader(br, new TabSpliter());
         while (rr.hasNext()) {
