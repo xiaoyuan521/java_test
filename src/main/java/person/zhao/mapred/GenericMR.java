@@ -1,13 +1,10 @@
 package person.zhao.mapred;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Iterator;
-
-import org.apache.commons.lang3.StringUtils;
 
 public class GenericMR {
 
@@ -30,32 +27,22 @@ public class GenericMR {
         this.keyIndex = keyIndex;
     }
 
-    public void reduce(IReducer reducer) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(this.in));
-        RecordReader rr = new RecordReader(br, new TabSpliter());
-        while (rr.hasNext()) {
-            String keyValue = rr.peak()[keyIndex];
-            KeyRecordIterator keyIte = new KeyRecordIterator(rr, keyIndex);
-            reducer.reduce(keyValue, keyIte);
-        }
-    }
-
-    public static void main(String[] args) throws FileNotFoundException {
+    public void reduce(IReducer reducer) {
+        BufferedReader br = null;
         try {
-            InputStream in = GenericMR.class.getClassLoader().getResourceAsStream("a.tsv");
-            new GenericMR(in).reduce(new IReducer() {
-
-                public void reduce(String key, Iterator<String[]> keyRecordIterator) {
-                    System.out.println(String.format("==== key is [%s] ====", key));
-                    String[] recordArr = null;
-                    while (keyRecordIterator.hasNext()) {
-                        recordArr = keyRecordIterator.next();
-                        System.out.println(StringUtils.join(recordArr, ","));
-                    }
-                }
-            });
-        } catch (IOException e) {
-            throw new RuntimeException();
+            br = new BufferedReader(new InputStreamReader(this.in));
+            RecordReader rr = new RecordReader(br, new TabSpliter());
+            while (rr.hasNext()) {
+                String keyValue = rr.peak()[keyIndex];
+                KeyRecordIterator keyIte = new KeyRecordIterator(rr, keyIndex);
+                reducer.reduce(keyValue, keyIte);
+            }
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                throw new RuntimeException();
+            }
         }
     }
 }
@@ -109,8 +96,8 @@ class RecordReader {
 
     public RecordReader(BufferedReader br, ISpliter spliter) {
 
-        this.spliter = spliter;
         this.br = br;
+        this.spliter = spliter;
 
         try {
             this.currentLine = readNext();
@@ -142,7 +129,7 @@ class RecordReader {
     public String[] getNext() {
         return this.nextLine;
     }
-    
+
     private String[] readNext() throws IOException {
         String line = br.readLine();
         if (line == null) {
@@ -152,10 +139,6 @@ class RecordReader {
         }
         return this.spliter.split(line);
     }
-}
-
-interface IReducer {
-    public void reduce(String key, Iterator<String[]> recordIterator);
 }
 
 interface ISpliter {
