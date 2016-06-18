@@ -14,6 +14,6 @@ for path in ${paths[@]};do
   cp="$cp$path"
 done
 
-cmd="java -cp $cp person.zhao.mapred.TestSum"
+cmd="java -cp $cp person.zhao.mapred.Sum"
 echo "$cmd"
 $cmd

@@ -13,7 +13,9 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import person.zhao.mapred.GenericMR;
 import person.zhao.mapred.IReducer;
@@ -88,23 +90,24 @@ public class GenericMRTest extends TestCase {
      */
     @Test(expected = RuntimeException.class)
     public void test5() {
+        try{
         sum(getInputStream("t_5.tsv"));
+        fail("should throw exception ...");
+        }catch(Exception e){
+//            assertEquals(e.getClass().getName(), "java.lang.ArrayIndexOutOfBoundsException");
+        }
     }
 
     /**
      * 非法格式，空行带空格
      */
-    @Test(expected = RuntimeException.class)
     public void test6() {
+        try{
         sum(getInputStream("t_6.tsv"));
-    }
-
-    /**
-     * 非法格式，空行带空格
-     */
-    @Test(expected = RuntimeException.class)
-    public void test7() {
-        throw new RuntimeException();
+        fail("should throw exception ...");
+        }catch(Exception e){
+//            assertEquals(e.getClass().getName(), "java.lang.ArrayIndexOutOfBoundsException");
+        }
     }
 
     private void sum(InputStream in) {
