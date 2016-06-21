@@ -5,7 +5,7 @@ base_dir=`cd $sh_dir;cd ..;pwd`;
 
 paths=()
 paths[0]="$base_dir/target/java_test-1.0-SNAPSHOT.jar"
-paths[1]="$base_dir/target/bin/*.jar"
+paths[1]="$base_dir/target/lib/*.jar"
 
 for path in ${paths[@]};do
   if [ -n "$cp" ]; then
@@ -14,6 +14,6 @@ for path in ${paths[@]};do
   cp="$cp$path"
 done
 
-cmd="java -cp $cp person.zhao.mapred.Sum"
+cmd="java -cp $cp person.zhao.mail.MailSenderLocal"
 echo "$cmd"
 $cmd
