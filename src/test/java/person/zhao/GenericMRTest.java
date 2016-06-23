@@ -13,9 +13,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import person.zhao.mapred.GenericMR;
 import person.zhao.mapred.IReducer;
@@ -109,10 +107,24 @@ public class GenericMRTest extends TestCase {
 //            assertEquals(e.getClass().getName(), "java.lang.ArrayIndexOutOfBoundsException");
         }
     }
-
+    
+    /**
+     * 正常case，测试集计列的位置
+     *
+     * @throws IOException
+     */
+    public void test7() throws IOException {
+        sum(getInputStream("t_7.tsv"), 2, 3);
+        checkResultFile();
+    }
+    
     private void sum(InputStream in) {
+        sum(in , 1, 2);
+    }
+
+    private void sum(InputStream in, int groupKeyIndex, final int sumIndex) {
         final List<String> lines = new ArrayList<String>();
-        new GenericMR(in, 1).reduce(new IReducer() {
+        new GenericMR(in, groupKeyIndex).reduce(new IReducer() {
             public void reduce(String key, Iterator<String[]> recordIterator) {
 
                 int ageSum = 0;
@@ -120,7 +132,7 @@ public class GenericMRTest extends TestCase {
                 String[] lineArr = null;
                 while (recordIterator.hasNext()) {
                     lineArr = recordIterator.next();
-                    age = Integer.parseInt(lineArr[2]);
+                    age = Integer.parseInt(lineArr[sumIndex]);
                     ageSum += age;
                 }
 
