@@ -10,8 +10,4 @@ public class MyPool extends GenericObjectPool<Person>{
         super(factory, config);
     }
     
-    public static void main(String[] args) throws Exception{
-    }
-    
-
 }
