@@ -36,7 +36,6 @@ public class MyPoolObjectFactory extends BasePooledObjectFactory<Person>{
         // 每到 4 结尾的秒数时候，对象有50%几率变成invalidate状态
         String sec = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
         boolean randomFlg = ((int)(Math.random() * 2)) == 0 ? true : false;
-        System.out.println(randomFlg);
         Pattern pattern = Pattern.compile("4$");
         if (pattern.matcher(sec).find() && randomFlg) {
             System.out.println("-- invalid one object, destroy --");
