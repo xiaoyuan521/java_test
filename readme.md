@@ -1,4 +1,4 @@
-* junit的运行方法
+#### junit的运行方法
 
 	* junit 4.x
 	如果低于4版本，下面有些方法是不支持的  
@@ -40,3 +40,10 @@
     }
 	```
 
+#### Apache common Pool
+
+	* 对象池
+	* 常用的是GenericeObjectPool, 创建需要一个Factory， 一个config
+	* 使用对象的时候，从pool中borrow，使用完return
+	* 异常处理， 看代码示例吧
+	* 常用的是GenericeObjectPool对象是线程安全的
