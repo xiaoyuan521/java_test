@@ -15,7 +15,6 @@ public class ProducerThread implements Runnable{
     public void run() {
         System.out.println(String.format("I am thread [%s]", this.name));
         sleep(100);
-        
     }
     
     public void sleep(int milisec){
