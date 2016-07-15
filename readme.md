@@ -4,6 +4,7 @@
 * [junit](https://github.com/yisuren/java_test#junit)
 * [Apache common Pool](https://github.com/yisuren/java_test#apache-common-pool)
 * [Thread pool Executor](https://github.com/yisuren/java_test#thread-pool-executor)
+* [thread](https://github.com/yisuren/java_test#thread)
 
 ---
 
@@ -109,3 +110,10 @@ public static Test suite() {
 	* Executors.newCachedThreadPool() (unbounded thread pool, with automatic thread reclamation)
 	* Executors.newFixedThreadPool(int) (fixed size thread pool)
 	* Executors.newSingleThreadExecutor() (single background thread),
+
+#### Thread
+
+* 3中阻塞状态（blocking）
+	* 等待阻塞：运行的线程执行wait()方法，JVM会把该线程放入等待池中。(wait会释放持有的锁)
+	* 同步阻塞：运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池中。
+	* 其他阻塞：运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。（注意,sleep是不会释放持有的锁）
