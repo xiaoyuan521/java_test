@@ -5,6 +5,7 @@
 * [Apache common Pool](https://github.com/yisuren/java_test#apache-common-pool)
 * [Thread pool Executor](https://github.com/yisuren/java_test#thread-pool-executor)
 * [thread](https://github.com/yisuren/java_test#thread)
+* [java local cache](https://github.com/yisuren/java_test#java-local-cache)
 
 ---
 
@@ -117,3 +118,35 @@ public static Test suite() {
 	* 等待阻塞：运行的线程执行wait()方法，JVM会把该线程放入等待池中。(wait会释放持有的锁)
 	* 同步阻塞：运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池中。
 	* 其他阻塞：运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。（注意,sleep是不会释放持有的锁）
+
+#### Java local cache
+
+* 什么是缓存
+
+	为了提高系统性能而专门开辟的一块高速空间。
+
+* 缓存有哪些种类
+
+	缓存有很多种  
+
+		CPU缓存  
+		操作系统缓存  
+		本地缓存  
+		HTTP缓存  
+		等等
+
+* Guawa CacheBuilder
+
+	是goolge实现的Java本地缓存策略  
+	设定丰富， 线程安全， 是java本地缓存的不二选择
+
+	特点
+
+		* Simple, in-memory caching
+		* Thread-safe implementation (internally similar to ConcurrentHashMap)
+		* No explicit support for distributed caching
+
+* 参考
+
+	中文: [http://www.cnblogs.com/peida/p/Guava_Cache.html](http://www.cnblogs.com/peida/p/Guava_Cache.html)  
+	官方pdf（需要科学上网）: [https://guava-libraries.googlecode.com/files/JavaCachingwithGuava.pdf](https://guava-libraries.googlecode.com/files/JavaCachingwithGuava.pdf) 
