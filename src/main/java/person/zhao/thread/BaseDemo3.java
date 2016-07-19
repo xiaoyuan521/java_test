@@ -5,6 +5,7 @@ package person.zhao.thread;
 
 /**
  * wait / notify
+ * 线程调度
  * 
  * obj.wait()，与obj.notify()必须要与synchronized(obj)一起使用，
  * 也就是wait,与notify是针对已经获取了Obj锁进行操作
