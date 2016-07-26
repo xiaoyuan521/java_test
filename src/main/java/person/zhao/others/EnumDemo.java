@@ -20,16 +20,18 @@ public class EnumDemo {
         for(PERSON p: personArr){
             System.out.println(p.toString());
             
+            String[] charcters = new String[]{"the good one ~", "the choosen one ~", "the beauty one ~"};
+            
             // enum类型与swith case的结合使用
             switch (p) {
                 case ZHAO:
-                    System.out.println("the good one ~");
+                    System.out.println(charcters[p.ordinal()]);
                     break;
                 case XU:
-                    System.out.println("the choosen one ~");
+                    System.out.println(charcters[p.ordinal()]);
                     break;
                 case WEN:
-                    System.out.println("the beauty one ~");
+                    System.out.println(charcters[p.ordinal()]);
                     break;
                 default:
                     System.out.println("no one ~");
