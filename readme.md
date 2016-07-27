@@ -6,6 +6,7 @@
 * [Thread pool Executor](https://github.com/yisuren/java_test#thread-pool-executor)
 * [thread](https://github.com/yisuren/java_test#thread)
 * [java local cache](https://github.com/yisuren/java_test#java-local-cache)
+* [maven](https://github.com/yisuren/java_test#maven)
 
 ---
 
@@ -154,3 +155,29 @@ public static Test suite() {
 
 	中文: [http://www.cnblogs.com/peida/p/Guava_Cache.html](http://www.cnblogs.com/peida/p/Guava_Cache.html)  
 	官方pdf（需要科学上网）: [https://guava-libraries.googlecode.com/files/JavaCachingwithGuava.pdf](https://guava-libraries.googlecode.com/files/JavaCachingwithGuava.pdf) 
+
+#### maven
+
+* maven dependency scope的说明
+
+	* compile  
+	默认的scope，表示 dependency 都可以在生命周期中使用。而且，这些dependencies 会传递到依赖的项目中。适用于所有阶段，会随着项目一起发布
+
+	* provided  
+	跟compile相似，但是表明了dependency 由JDK或者容器提供，例如Servlet AP和一些Java EE APIs。这个scope 只能作用在编译和测试时，同时没有传递性。
+
+	* runtime  
+	表示dependency不作用在编译时，但会作用在运行和测试时，如JDBC驱动，适用运行和测试阶段。
+
+	* test  
+	表示dependency作用在测试时，不作用在运行时。 只在测试时使用，用于编译和运行测试代码。不会随项目发布。
+
+	* system  
+	跟provided 相似，但是在系统中要以外部JAR包的形式提供，maven不会在repository查找它。  
+	必须指定systemPath，慎用
+
+* java 依赖包的理解
+
+	* 编译时需要的包，运行时也一定需要
+	* 编译时不需要的包，运行时可能需要，例如JDBC驱动  
+	基于接口的实现,class.forName("xxx")加载等。
