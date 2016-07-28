@@ -15,6 +15,16 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import person.zhao.anno.mapbean.KeyAnno.Pattern;
 
+/**
+ * 将Map<key, value>映射成一个对象的各个属性和值。<br>
+ * 通过在对象的filed上增加KeyAnno注解来实现
+ * 
+ * 对象的field类型。支持 int, String , java.util.Date 3种类型
+ * Map中的key,value 需要都是 String类型
+ * 
+ * @author zhao_hongsheng
+ *
+ */
 public class Base {
 
     public Person mapToPerson(Map<String, String> personMap) throws Exception {
