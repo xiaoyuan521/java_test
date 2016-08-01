@@ -16,6 +16,7 @@ public class Main {
 
     /**
      * 使用SynchronousQueue
+     * 
      * pool的最大容量设定为了Integer.MAX_VALUE。
      */
     public void p1() {
@@ -28,7 +29,7 @@ public class Main {
                 );
         
         for (int i = 0; i < 100; i++) {
-            Runnable runnable = new ProducerThread(service, "thread - " + i);
+            Runnable runnable = new ProducerThread("thread - " + i);
             service.submit(runnable);
             sleep(1);
         }
@@ -49,7 +50,7 @@ public class Main {
                 );
         
         for (int i = 0; i < 100; i++) {
-            Runnable runnable = new ProducerThread(service, "thread - " + i);
+            Runnable runnable = new ProducerThread("thread - " + i);
             service.submit(runnable);
             sleep(1);
         }
@@ -61,7 +62,7 @@ public class Main {
      * 13 + 20 = 33
      * 
      * 超过33的部分，使用RejectPolicy
-     * 默认是抛异常，已可以丢弃
+     * 默认是抛异常，也可以丢弃
      */
     public void p3() {
         ExecutorService service =
@@ -74,7 +75,7 @@ public class Main {
                 );
         try {
             for (int i = 0; i < 100; i++) {
-                Runnable runnable = new ProducerThread(service, "thread - " + i);
+                Runnable runnable = new ProducerThread("thread - " + i);
                 service.submit(runnable);
                 sleep(1);
             }
@@ -91,7 +92,7 @@ public class Main {
         ExecutorService service = Executors.newSingleThreadExecutor();
         try {
             for (int i = 0; i < 100; i++) {
-                Runnable runnable = new ProducerThread(service, "thread - " + i);
+                Runnable runnable = new ProducerThread("thread - " + i);
                 service.submit(runnable);
                 sleep(1);
             }
@@ -109,6 +110,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        new Main().p4();
+        new Main().p1();
     }
 }

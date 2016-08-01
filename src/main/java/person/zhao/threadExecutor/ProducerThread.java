@@ -1,12 +1,11 @@
 package person.zhao.threadExecutor;
 
-import java.util.concurrent.ExecutorService;
 
 public class ProducerThread implements Runnable{
 
     private String name = null;
 
-    public ProducerThread(ExecutorService executeService, String name) {
+    public ProducerThread(String name) {
         super();
         this.name = name;
     }
