@@ -67,7 +67,7 @@
 	* 在实际的编程中或多或少我们都无意中应用过。
 	* 实际应用各种无需刻意最求使用某种设计模式，但是要符合设计模式的6个原则。
 
-----
+---
 
 #### junit
 
@@ -171,6 +171,8 @@ public static Test suite() {
 	* Executors.newFixedThreadPool(int) (fixed size thread pool)
 	* Executors.newSingleThreadExecutor() (single background thread),
 
+---
+
 #### Thread
 
 * 3种阻塞状态（blocking）
@@ -181,6 +183,8 @@ public static Test suite() {
 * 文章
 
 	* [http://www.mamicode.com/info-detail-517008.html](http://www.mamicode.com/info-detail-517008.html)
+
+---
 
 #### Java local cache
 
@@ -213,6 +217,8 @@ public static Test suite() {
 
 	中文: [http://www.cnblogs.com/peida/p/Guava_Cache.html](http://www.cnblogs.com/peida/p/Guava_Cache.html)  
 	官方pdf（需要科学上网）: [https://guava-libraries.googlecode.com/files/JavaCachingwithGuava.pdf](https://guava-libraries.googlecode.com/files/JavaCachingwithGuava.pdf) 
+
+---
 
 #### maven
 
