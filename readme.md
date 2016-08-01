@@ -1,6 +1,7 @@
 
 ## 目录
 
+* [设计模式](https://github.com/yisuren/java_test#pattern)
 * [junit](https://github.com/yisuren/java_test#junit)
 * [Apache common Pool](https://github.com/yisuren/java_test#apache-common-pool)
 * [Thread pool Executor](https://github.com/yisuren/java_test#thread-pool-executor)
@@ -10,6 +11,61 @@
 
 ---
 
+#### 设计模式
+
+* 设计模式的6个原则  
+[http://www.uml.org.cn/sjms/201211023.asp](http://www.uml.org.cn/sjms/201211023.asp)
+
+ 	* 单一职责原则
+
+		没什么需要多说的  
+		注意点： 修正既存的代码的时候，很容易职责扩散， 注意及时重构
+
+	* 里氏替换原则
+
+		子类不重写抽象中已经实现好的方法。
+
+	* 依赖倒置原则
+
+		面向接口编程， 高层对象不依赖于底层的对象。  
+		（底层对象修正高层对象不受到影响）
+
+	* 接口隔离原则
+
+		相当于接口的职责单一化，每个接口中只定义必须的方法。  
+
+	* 迪米特法则
+
+		每个对象都尽量少的依赖其他对象。
+
+	* 开闭原则
+
+		对扩展开放，都修改封闭。  
+		例如，增加一项新功能，如果能通过新建文件扩展某个类实现，就符合原则  
+		如果必须通过修正现有代码来实现，就不符合原则
+
+* 代码示例
+
+	* 工厂模式
+
+		简单 / 静态 / 抽象
+	
+	* 单利模式  
+
+		懒汉 / 饿汉 / 线程安全
+		[http://www.jb51.net/article/46922.htm](http://www.jb51.net/article/46922.htm)
+	
+	* 模板（template）模式
+
+	* 装饰器模式 / 代理模式 / 匿名内部类
+
+* 感受
+
+	* 设计模式的根本目的是为了，降低耦合，提高复用，减少重复代码，方便代码维护。
+	* 很多设计模式方法都是很类似的，只是应用场景不同，或者类之间的关联方法不同。
+	* 设计模式并不能解决所有问题。
+
+----
 
 #### junit
 
