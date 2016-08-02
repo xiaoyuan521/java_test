@@ -3,7 +3,7 @@
 
 * [设计模式](https://github.com/yisuren/java_test#pattern)
 * [junit](https://github.com/yisuren/java_test#junit)
-* [Apache common Pool](https://github.com/yisuren/java_test#apache-common-pool)
+* [Apache common Pool2](https://github.com/yisuren/java_test#apache-common-pool2)
 * [Thread pool Executor](https://github.com/yisuren/java_test#thread-pool-executor)
 * [thread](https://github.com/yisuren/java_test#thread)
 * [java local cache](https://github.com/yisuren/java_test#java-local-cache)
@@ -121,7 +121,7 @@ public static Test suite() {
 
 ---
 
-#### Apache common Pool
+#### Apache common Pool2
 
 * 对象池
 * 常用的是GenericeObjectPool, 创建需要一个Factory， 一个config
