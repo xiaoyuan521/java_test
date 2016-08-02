@@ -245,3 +245,30 @@ public static Test suite() {
 	* 编译时需要的包，运行时也一定需要
 	* 编译时不需要的包，运行时可能需要，例如JDBC驱动  
 	基于接口的实现,class.forName("xxx")加载等。
+
+* Maven加速
+
+	* settings.xml的说明
+
+		`settings.xml`在maven的安装目录下有一个总的，通常这个目录页是MAVEN_HOME  
+		另外在各个用户的目录下，每个用户还有一个`settings.xml`  
+		位置 `/root/.m2/setting.xml`，如果没有这个文件可以从MAVEN_HOME/conf下拷贝一个
+
+	* maven加速的设定
+
+		maven默认连的central仓库的速度比较慢，  
+		为了提高速度可以设定速度好的mirror，在`settings.xml`中，找到mirrors内设定
+		```
+		<mirror>    
+		      <id>repo2</id>    
+		      <mirrorOf>central</mirrorOf>    
+		      <name>Human Readable Name for this Mirror.</name>    
+		      <url>http://repo2.maven.org/maven2/</url>    
+		</mirror>
+		<mirror>    
+		      <id>ui</id>    
+		      <mirrorOf>central</mirrorOf>    
+		      <name>Human Readable Name for this Mirror.</name>    
+		     <url>http://uk.maven.org/maven2/</url>    
+		</mirror>    
+		```
