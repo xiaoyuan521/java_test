@@ -1,13 +1,14 @@
 
 ## 目录
 
-* [设计模式](https://github.com/yisuren/java_test#pattern)
+* [设计模式](https://github.com/yisuren/java_test#设计模式)
 * [junit](https://github.com/yisuren/java_test#junit)
 * [Apache common Pool2](https://github.com/yisuren/java_test#apache-common-pool2)
 * [Thread pool Executor](https://github.com/yisuren/java_test#thread-pool-executor)
 * [thread](https://github.com/yisuren/java_test#thread)
 * [java local cache](https://github.com/yisuren/java_test#java-local-cache)
 * [maven](https://github.com/yisuren/java_test#maven)
+* [分布式处理](https://github.com/yisuren/java_test#分布式处理)
 
 ---
 
@@ -273,3 +274,19 @@ public static Test suite() {
 		     <url>http://uk.maven.org/maven2/</url>    
 		</mirror>    
 		```
+
+#### 分布式处理
+
+	* 参考文章  
+	[https://www.zhihu.com/question/22764869](https://www.zhihu.com/question/22764869)
+
+	* 目前接触过的  
+	
+		* web服务器 - 负载均衡  
+		* 关系型数据库（mysql） -  分库分表
+		* 关系型数据库（mysql） -  master/slave
+		* 本地缓存 guawa cache
+		* 分布缓存 memCached / kyotoTycoon
+		* 分布式文件 -  nfs / hadoop
+		* 系统间结合rabbitmq / kafka
+		* 数据处理 hadoop / spark / storm 
