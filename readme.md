@@ -9,6 +9,7 @@
 * [java local cache](https://github.com/yisuren/java_test#java-local-cache)
 * [maven](https://github.com/yisuren/java_test#maven)
 * [分布式处理](https://github.com/yisuren/java_test#分布式处理)
+* [java资源文件](https://github.com/yisuren/java_test#资源文件)
 
 ---
 
@@ -275,6 +276,8 @@ public static Test suite() {
 		</mirror>    
 		```
 
+---
+
 #### 分布式处理
 
 	* 参考文章  
@@ -290,3 +293,32 @@ public static Test suite() {
 		* 分布式文件 -  nfs / hadoop
 		* 系统间结合rabbitmq / kafka
 		* 数据处理 hadoop / spark / storm 
+
+---
+
+#### 资源文件
+
+	* java.util.ResourceBundle  
+	
+		Resource.getBundle方法是如何找到资源文件的呢？  
+		> First, it attempts to load a class using the generated class name. If such a class can be found and loaded using the specified class loader, is assignment compatible with ResourceBundle, is accessible from ResourceBundle, and can be instantiated, getBundle creates a new instance of this class and uses it as the result resource bundle.
+		首先，根据getBundle传来的路径，找类。找到就实例化
+		>Otherwise, getBundle attempts to locate a property resource file using the generated properties file name. It generates a path name from the candidate bundle name by replacing all "." characters with "/" and appending the string ".properties". It attempts to find a "resource" with this name using ClassLoader.getResource. (Note that a "resource" in the sense of getResource has nothing to do with the contents of a resource bundle, it is just a container of data, such as a file.) If it finds a "resource", it attempts to create a new PropertyResourceBundle instance from its contents. If successful, this instance becomes the result resource bundle.
+		如果上一步找不到，就把.都替换成/，类名字+.properties后缀，变成文件路径  
+		找文件，这时实例的话类就是PropertiesResourceBundle了。  
+		properties文件应该是编译过的ISOxxx编码的文件。（eclipse自动能做）
+
+	* java.util.Properties
+
+		* load  
+		* loadFromXml
+
+	* 辅助类
+
+		* 取得InputStream  
+		Class.class.getResourceAsStream(path)  
+		path如果是以'/'开头的，那么从classpath根路径开始找   
+		如果不是'/'开头的，相对目录
+
+		* servlet取得InputStream  
+		context.getResourceAsStream
