@@ -336,8 +336,10 @@ public static Test suite() {
 
 	* 基本用法
 
-		> String getMessage(String code, Object[] args, String default, Locale loc)
+		> String getMessage(String code, Object[] args, String default, Locale loc)  
 		> String getMessage(String code, Object[] args, Locale loc)
+		
+		第二个不带默认消息，找不到抛异常
 	
 		> Spring’s various MessageResource implementations follow the same locale resolution and fallback rules as the standard JDK ResourceBundle
 		
