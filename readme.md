@@ -32,11 +32,7 @@
 
 3. User classes - 用户自定义jar包 - System.getProperty("java.class.path")
 
-	搜索顺序为   
-	
-		*当前目录*  
-		*环境变量 CLASSPATH*   
-		*参数 -cp指定*
+	搜索顺序为： *当前目录* -> *环境变量 CLASSPATH* -> *参数 -cp指定*
 
 * 参数说明
 
