@@ -17,38 +17,12 @@
  <!-- 依赖包 -->
  <dependencies>
   <dependency>
-   <groupId>junit</groupId>
-   <artifactId>junit</artifactId>
-   <version>4.12</version>
-   <scope>test</scope>
+   <groupId>A</groupId>
+   <artifactId>A</artifactId>
+   <version>1.0</version>
+   <scope>system</scope>
+   <systemPath>/var/data/java_test_205/lib/kyotocabinet-java-1.24.jar</systemPath>
   </dependency>
-  <dependency>
-   <groupId>org.apache.commons</groupId>
-   <artifactId>commons-lang3</artifactId>
-   <version>3.1</version>
-  </dependency>
-  <!-- Java Mail API -->
-  <dependency>
-   <groupId>javax.mail</groupId>
-   <artifactId>mail</artifactId>
-   <version>1.4.5</version>
-  </dependency>
-
-  <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
-  <dependency>
-   <groupId>org.apache.commons</groupId>
-   <artifactId>commons-pool2</artifactId>
-   <version>2.4.2</version>
-  </dependency>
-
-  <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-  <dependency>
-   <groupId>com.google.guava</groupId>
-   <artifactId>guava</artifactId>
-   <version>19.0</version>
-  </dependency>
-
-
  </dependencies>
 
  <build>
@@ -60,40 +34,9 @@
     <artifactId>maven-compiler-plugin</artifactId>
     <version>2.3.2</version>
     <configuration>
-     <source>1.7</source>
-     <target>1.7</target>
+     <source>1.6</source>
+     <target>1.6</target>
     </configuration>
-   </plugin>
-
-   <!-- 让junit生成html report -->
-   <plugin>
-    <artifactId>maven-antrun-plugin</artifactId>
-    <executions>
-     <execution>
-      <id>test-reports</id>
-      <phase>test</phase>
-      <configuration>
-       <tasks>
-        <junitreport todir="target/surefire-reports">
-         <fileset dir="target/surefire-reports">
-          <include name="**/*.xml" />
-         </fileset>
-         <report format="noframes" todir="target/surefire-reports" />
-        </junitreport>
-       </tasks>
-      </configuration>
-      <goals>
-       <goal>run</goal>
-      </goals>
-     </execution>
-    </executions>
-    <dependencies>
-     <dependency>
-      <groupId>ant</groupId>
-      <artifactId>ant-junit</artifactId>
-      <version>1.6.2</version>
-     </dependency>
-    </dependencies>
    </plugin>
 
    <!-- 依赖包的plugin -->
