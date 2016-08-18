@@ -2,15 +2,15 @@
 ## 目录
 
 * [java命令行](#java命令行)
-* [设计模式](https://github.com/yisuren/java_test#设计模式)
-* [junit](https://github.com/yisuren/java_test#junit)
-* [Apache common Pool2](https://github.com/yisuren/java_test#apache-common-pool2)
-* [Thread pool Executor](https://github.com/yisuren/java_test#thread-pool-executor)
-* [thread](https://github.com/yisuren/java_test#thread)
-* [java local cache](https://github.com/yisuren/java_test#java-local-cache)
-* [maven](https://github.com/yisuren/java_test#maven)
-* [分布式处理](https://github.com/yisuren/java_test#分布式处理)
-* [java资源文件](https://github.com/yisuren/java_test#资源文件)
+* [设计模式](#设计模式)
+* [junit](#junit)
+* [Apache common Pool2](#apache-common-pool2)
+* [Thread pool Executor](#thread-pool-executor)
+* [thread](#thread)
+* [java local cache](#java-local-cache)
+* [maven](#maven)
+* [分布式处理](#分布式处理)
+* [java资源文件](#资源文件)
 
 ---
 
