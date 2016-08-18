@@ -17,11 +17,11 @@
  <!-- 依赖包 -->
  <dependencies>
   <dependency>
-   <groupId>A</groupId>
-   <artifactId>A</artifactId>
+   <groupId>cabinet</groupId>
+   <artifactId>cabinet</artifactId>
    <version>1.0</version>
    <scope>system</scope>
-   <systemPath>/var/data/java_test_205/lib/kyotocabinet-java-1.24.jar</systemPath>
+   <systemPath>${project.basedir}/lib/kyotocabinet-java-1.24.jar</systemPath>
   </dependency>
  </dependencies>
 
