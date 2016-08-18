@@ -1,6 +1,7 @@
 
 ## 目录
 
+* [java命令行](#java命令行)
 * [设计模式](https://github.com/yisuren/java_test#设计模式)
 * [junit](https://github.com/yisuren/java_test#junit)
 * [Apache common Pool2](https://github.com/yisuren/java_test#apache-common-pool2)
@@ -10,6 +11,40 @@
 * [maven](https://github.com/yisuren/java_test#maven)
 * [分布式处理](https://github.com/yisuren/java_test#分布式处理)
 * [java资源文件](https://github.com/yisuren/java_test#资源文件)
+
+---
+
+#### java命令行
+
+* 原理
+
+	java虚拟机加载已经编译好的class文件，然后运行
+
+* 基本方法 
+	
+	java -cp /usr/local/xx.jar;xxx.jar;... -Dsystem.env.somepath=/usr/local -Xmx 1024m package.sub.ClassName
+
+* java class加载顺序
+
+	1. Bootstrap classes - 虚拟机自带jar包 - System.getProperty("sun.boot.class.path")
+
+	2. Extension classer - %JAVA_HOME\jre\lib\ext - System. getProperty("java.ext.dirs”)
+
+	3. User classes - 用户自定义jar包 - System.getProperty("java.class.path")
+
+		搜索顺序为 *当前目录* , *环境变量 CLASSPATH* , *参数 -cp指定*
+
+* 参数说明
+
+	* -cp, -classpath
+
+		告知虚拟机搜索目录名、jar 文档名、zip 文档名，之间用分号;分隔（linux用 : ）。  
+		使用-classpath 后虚拟机将 _不再_ 使用 环境变量CLASSPATH 中的类搜索路径。  
+		推荐使用 -cp， 或者局部的（shell内）CLASSPATH，而不推荐jar设定到全局的CLASSPATH中。
+
+	* -D<propertyName>=value
+
+		在虚拟机的系统属性中设置属性名/值对，运行在此虚拟机之上的应用程序可用。
 
 ---
 
