@@ -7,6 +7,7 @@
 * [Apache common Pool2](#apache-common-pool2)
 * [c3p0](#c3p0)
 * [Thread pool Executor](#thread-pool-executor)
+* [Queue](#queue)
 * [thread](#thread)
 * [java local cache](#java-local-cache)
 * [maven](#maven)
@@ -232,6 +233,19 @@ public static Test suite() {
 
 	* 每个线程的before， after: 继承 `ThreadPoolExecutor`, 扩展方法 `beforeExecute` `afterExecute`
 	* 所有线程执行完了的callback 继承`terminated`方法
+
+---
+
+#### Queue
+
+* ArrayBlockingQueue, LinkedBlockingQueue
+
+ * 2个都是线程安全的，内部一个是array存储，一个是链表存储（猜测）
+ * 常用方法和说明 [http://blog.csdn.net/zhuyijian135757/article/details/41623637](http://blog.csdn.net/zhuyijian135757/article/details/41623637)
+ * 由于都是线程安全的，可以用来进行多线程编程  
+
+  LinkedBlockingQueue 作为一个保存list对象地方，多个线程从他这里poll后进行消费  
+  可以参考 queue 目录下的代码
 
 ---
 
