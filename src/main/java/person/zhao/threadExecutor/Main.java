@@ -101,6 +101,33 @@ public class Main {
         }
     }
     
+    /**
+     * 扩展了，ThreadPoolExecutor
+     * 提供对terminate方法的支持
+     * 
+     * 内部使用apache提供的Executors.newFixedThreadPool
+     * 
+     */
+    public void p5(){
+        ExecutorService service = TerminateSenseThreadExecutor.Executor(10, new TerminateCallback() {
+            
+            @Override
+            public void terminate() {
+                System.out.println("all done ...");
+            }
+        });
+        
+        try {
+            for (int i = 0; i < 100; i++) {
+                Runnable runnable = new ProducerThread("thread - " + i);
+                service.submit(runnable);
+                sleep(1);
+            }
+        } finally {
+            service.shutdown();
+        }
+    }
+    
     public void sleep(int milisec){
         try {
             Thread.sleep(milisec);
@@ -110,6 +137,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        new Main().p1();
+        new Main().p5();
     }
 }

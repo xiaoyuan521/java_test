@@ -207,7 +207,18 @@ public static Test suite() {
 
 	* Executors.newCachedThreadPool() (unbounded thread pool, with automatic thread reclamation)
 	* Executors.newFixedThreadPool(int) (fixed size thread pool)
-	* Executors.newSingleThreadExecutor() (single background thread),
+	* Executors.newSingleThreadExecutor() (single background thread)
+
+* `service.shutdown`
+
+	* 调用`shutdonw`方法会是现有的service不能再加入更多的thread，已经加入的service会正确执行完成。
+	* `shutdownNow` 能立即停止所有线程
+	* 如果不调用 `service.shutdown` 方法，主线程不停止。
+
+* service的回调方法
+
+	* 每个线程的before， after: 继承 `ThreadPoolExecutor`, 扩展方法 `beforeExecute` `afterExecute`
+	* 所有线程执行完了的callback 继承`terminated`方法
 
 ---
 
