@@ -5,6 +5,7 @@
 * [设计模式](#设计模式)
 * [junit](#junit)
 * [Apache common Pool2](#apache-common-pool2)
+* [c3p0](#c3p0)
 * [Thread pool Executor](#thread-pool-executor)
 * [thread](#thread)
 * [java local cache](#java-local-cache)
@@ -168,6 +169,18 @@ public static Test suite() {
   例如borrow对象后，使用对象进行处理，无论是否出异常，需要把对象return回到pool  
   例如pool中的对象是一个connection，如果connection断开了，需要将对象移出pool（testOnReturn等）
 * 常用的是GenericeObjectPool对象， 它是线程安全的
+
+---
+
+#### c3p0
+
+* 官网
+
+ http://www.mchange.com/projects/c3p0/index.html#using_c3p0
+
+* 用法
+
+ 参考代码
 
 ---
 
