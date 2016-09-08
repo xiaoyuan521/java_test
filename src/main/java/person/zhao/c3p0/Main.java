@@ -52,11 +52,11 @@ public class Main {
         // The DataSource cpds is now a fully configured and usable pooled
         // DataSource
 
-        Connection c = getConnection();
+        final Connection c = getConnection();
         System.out.println(c);
-        Connection c2 = getConnection();
+        final Connection c2 = getConnection();
         System.out.println(c2);
-        Connection c3 = getConnection();
+        final Connection c3 = getConnection();
         System.out.println(c3);
         Thread t = new Thread(new Runnable() {
 
