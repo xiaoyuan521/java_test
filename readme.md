@@ -274,6 +274,14 @@ public static Test suite() {
  * 主线程可以通过设定Thread.setUncaughtExceptionHandler来处理Runtime Exception  
  要注意，handler的执行是在子线程中。
 
+ * 线程间的默认关系
+
+  * 一般来说，主线程会等待子线程的结束自己再结束  
+ 
+   * 如果主线程调用了 `System.exit(returnCode);` 强行结束，那么不会等待子线程
+   * 如果子线程使用了 t.join, 加入到了主线程中，那么主线程会等待子线程。
+
+
 ---
 
 #### Java local cache
