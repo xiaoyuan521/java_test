@@ -260,6 +260,20 @@ public static Test suite() {
 
 	* [http://www.mamicode.com/info-detail-517008.html](http://www.mamicode.com/info-detail-517008.html)
 
+* run和start的对比
+
+ * 调用thread#run方法，并不会启动一个新的线程，而是相当于在主线程中，直接调用
+ * 调用thread#start方法，会启动一个新的线程
+ * thread.start + join 方法，能够让主线程等待子线程结束，再结束
+
+* 子线程的异常处理
+
+ * 子线程不应该抛出任何unchecked的Exception （通过run 方法的签名不允许抛出异常）
+ * 子线程中的异常应该在自己内部解决（run 方法内）
+ * 子线程抛出的Runtime Exception， 主线程无法捕获（catch）
+ * 主线程可以通过设定Thread.setUncaughtExceptionHandler来处理Runtime Exception  
+ 要注意，handler的执行是在子线程中。
+
 ---
 
 #### Java local cache
