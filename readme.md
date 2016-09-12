@@ -259,6 +259,8 @@ public static Test suite() {
 * 文章
 
 	* [http://www.mamicode.com/info-detail-517008.html](http://www.mamicode.com/info-detail-517008.html)
+	* 并发谢列文章，好！  
+	[https://my.oschina.net/hosee/blog/597934](https://my.oschina.net/hosee/blog/597934)
 
 * run和start的对比
 
@@ -274,13 +276,12 @@ public static Test suite() {
  * 主线程可以通过设定Thread.setUncaughtExceptionHandler来处理Runtime Exception  
  要注意，handler的执行是在子线程中。
 
- * 线程间的默认关系
+ * 线程的生命周期
 
   * 一般来说，主线程会等待子线程的结束自己再结束  
  
    * 如果主线程调用了 `System.exit(returnCode);` 强行结束，那么不会等待子线程
    * 如果子线程使用了 t.join, 加入到了主线程中，那么主线程会等待子线程。
-
 
 ---
 
