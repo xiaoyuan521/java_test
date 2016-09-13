@@ -192,6 +192,7 @@ public static Test suite() {
 	> Thread pools address two different problems: they usually provide improved performance when executing large numbers of asynchronous tasks, due to reduced per-task invocation overhead, and they provide a means of bounding and managing the resources, including threads, consumed when executing a collection of tasks. Each ThreadPoolExecutor also maintains some basic statistics, such as the number of completed tasks.
 
  	1. 解决大量并发线程的性能问题  
+ 	另一种说法： 线程池的作用就是将线程进行复用，而不是把性能都浪费在线程的启动和切换的开销中。
 
  	2. 维护一些统计信息，例如完成的task数，一些hooks方法（before， after）
 
@@ -288,6 +289,22 @@ public static Test suite() {
  * atomicInteger 属于无锁类，能解决线程数据的同步问题
  * 无锁类的效率要高于同步（synchonized）
  * 无锁类的原理是： 相互竞争的线程总有一个会成功，其他不成功的会再次执行。
+
+* 各种同步对象
+
+ * Map m = Collections.synchronizedMap(new HashMap())，能将一个普通的map变成同步的map  
+  原理就是将map中的每个方法都加上synchonized关键字
+
+ * ConcurrentHashMap 是专门提供的同步map，效率要比上面这个要快的多
+
+ * BlockingQueue不是一个高性能的容器。但是它是一个非常好的共享数据的容器。是典型的生产者和消费者的实现。
+
+* Runnable, Callbale
+ 
+ * Callable规定的方法是call(),Runnable规定的方法是run().
+ * Callable的任务执行后可返回值，而Runnable的任务是不能返回值得
+ * call方法可以抛出异常，run方法不可以
+ * 运行Callable任务可以拿到一个Future对象，表示异步计算的结果。
 
 ---
 
