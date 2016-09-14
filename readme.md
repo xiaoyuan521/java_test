@@ -237,19 +237,6 @@ public static Test suite() {
 
 ---
 
-#### Queue
-
-* ArrayBlockingQueue, LinkedBlockingQueue
-
- * 2个都是线程安全的，内部一个是array存储，一个是链表存储（猜测）
- * 常用方法和说明 [http://blog.csdn.net/zhuyijian135757/article/details/41623637](http://blog.csdn.net/zhuyijian135757/article/details/41623637)
- * 由于都是线程安全的，可以用来进行多线程编程  
-
-  LinkedBlockingQueue 作为一个保存list对象地方，多个线程从他这里poll后进行消费  
-  可以参考 queue 目录下的代码
-
----
-
 #### Thread
 
 * 3种阻塞状态（blocking）
@@ -297,14 +284,35 @@ public static Test suite() {
 
  * ConcurrentHashMap 是专门提供的同步map，效率要比上面这个要快的多
 
- * BlockingQueue不是一个高性能的容器。但是它是一个非常好的共享数据的容器。是典型的生产者和消费者的实现。
+ * ArrayBlockingQueue, LinkedBlockingQueue
 
-* Runnable, Callbale
+  * BlockingQueue不是一个高性能的容器。但是它是一个非常好的共享数据的容器。是典型的生产者和消费者的实现。
+
+  * 2个都是线程安全的，内部一个是array存储，一个是链表存储（猜测）
+ 
+  * 常用方法和说明 [http://blog.csdn.net/zhuyijian135757/article/details/41623637](http://blog.csdn.net/zhuyijian135757/article/details/41623637)
+ 
+  * 由于都是线程安全的，可以用来进行多线程编程  
+  最简单 生产者 / 消费者 线程模型  
+  代码参考: [https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/queue/Main.java](https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/queue/Main.java)
+
+* Runnable, Callable
  
  * Callable规定的方法是call(),Runnable规定的方法是run().
  * Callable的任务执行后可返回值，而Runnable的任务是不能返回值得
  * call方法可以抛出异常，run方法不可以
  * 运行Callable任务可以拿到一个Future对象，表示异步计算的结果。
+ * Callable不能直接作为线程启动，可以结合FutureTask类来启动线程，也可以直接submit到ExecutorService中启动
+
+* java.util.concurrent.Future
+ 
+ * Future类是用来接收异步调用的结果的
+ * Future.get方法能取得异步调用个结果，如果结果还未返回，这个方法会阻塞当前线程，直到结果返回
+
+* CompletionService
+
+ * 如果需要取得多个并行线程的结果，可以使用CompletionService.take().get()
+ * CompletionService.take().get() 需要循环调用，结果返回的顺序为线程完成的先后顺序。
 
 ---
 
