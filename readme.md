@@ -7,8 +7,7 @@
 * [Apache common Pool2](#apache-common-pool2)
 * [c3p0](#c3p0)
 * [Thread pool Executor](#thread-pool-executor)
-* [Queue](#queue)
-* [thread](#thread)
+* [Thread](#thread)
 * [java local cache](#java-local-cache)
 * [maven](#maven)
 * [分布式处理](#分布式处理)
@@ -273,7 +272,7 @@ public static Test suite() {
  
 * 无锁
 
- * atomicInteger 属于无锁类，能解决线程数据的同步问题
+ * AtomicInteger 属于无锁类，能解决线程数据的同步问题
  * 无锁类的效率要高于同步（synchonized）
  * 无锁类的原理是： 相互竞争的线程总有一个会成功，其他不成功的会再次执行。
 
@@ -286,15 +285,15 @@ public static Test suite() {
 
  * ArrayBlockingQueue, LinkedBlockingQueue
 
-  * BlockingQueue不是一个高性能的容器。但是它是一个非常好的共享数据的容器。是典型的生产者和消费者的实现。
+		* BlockingQueue不是一个高性能的容器。但是它是一个非常好的共享数据的容器。是典型的生产者和消费者的实现。
 
-  * 2个都是线程安全的，内部一个是array存储，一个是链表存储（猜测）
+		* 2个都是线程安全的，内部一个是array存储，一个是链表存储（猜测）
  
-  * 常用方法和说明 [http://blog.csdn.net/zhuyijian135757/article/details/41623637](http://blog.csdn.net/zhuyijian135757/article/details/41623637)
+  		* 常用方法和说明 [http://blog.csdn.net/zhuyijian135757/article/details/41623637](http://blog.csdn.net/zhuyijian135757/article/details/41623637)
  
-  * 由于都是线程安全的，可以用来进行多线程编程  
-  最简单 生产者 / 消费者 线程模型  
-  代码参考: [https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/queue/Main.java](https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/queue/Main.java)
+  		* 由于都是线程安全的，可以用来进行多线程编程  
+		最简单 生产者 / 消费者 线程模型  
+  		代码参考: [https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/queue/Main.java](https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/queue/Main.java)
 
 * Runnable, Callable
  
@@ -407,19 +406,19 @@ public static Test suite() {
 
 #### 分布式处理
 
-	* 参考文章  
-	[https://www.zhihu.com/question/22764869](https://www.zhihu.com/question/22764869)
+* 参考文章  
+[https://www.zhihu.com/question/22764869](https://www.zhihu.com/question/22764869)
 
-	* 目前接触过的  
-	
-		* web服务器 - 负载均衡  
-		* 关系型数据库（mysql） -  分库分表
-		* 关系型数据库（mysql） -  master/slave
-		* 本地缓存 guawa cache
-		* 分布缓存 memCached / kyotoTycoon
-		* 分布式文件 -  nfs / hadoop
-		* 系统间结合rabbitmq / kafka
-		* 数据处理 hadoop / spark / storm 
+* 目前接触过的  
+
+	* web服务器 - 负载均衡  
+	* 关系型数据库（mysql） -  分库分表
+	* 关系型数据库（mysql） -  master/slave
+	* 本地缓存 guawa cache
+	* 分布缓存 memCached / kyotoTycoon
+	* 分布式文件 -  nfs / hadoop
+	* 系统间结合rabbitmq / kafka
+	* 数据处理 hadoop / spark / storm 
 
 ---
 
