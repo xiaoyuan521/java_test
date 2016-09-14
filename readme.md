@@ -263,7 +263,7 @@ public static Test suite() {
  * 主线程可以通过设定Thread.setUncaughtExceptionHandler来处理Runtime Exception  
  要注意，handler的执行是在子线程中。
  * 使用 Callable 可以在主线程中捕获到子线程的异常  
- 参考代码： [https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/thread/CallableDemoe2.java](https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/thread/CallableDemoe2.java)
+ 参考代码： [https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/thread/CallableDemo2.java](https://github.com/yisuren/java_test/blob/master/src/main/java/person/zhao/thread/CallableDemoe2.java)
 
 * 线程的生命周期
 
