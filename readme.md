@@ -12,6 +12,7 @@
 * [maven](#maven)
 * [分布式处理](#分布式处理)
 * [java资源文件](#资源文件)
+* [java byte型](# byte)
 
 ---
 
@@ -480,3 +481,67 @@ public static Test suite() {
 		> Remember that all ApplicationContext implementations are also MessageSource implementations and so can be cast to the MessageSource interface.
 		
 		ApplicationContext实现了MessageResource接口，可以直接当MessageResource使用。
+
+---
+
+#### byte
+
+* java中的byte类型就代表一个byte， 8bit
+
+* 一个byte中存储的内容为 0101010101... 的二进制（binary）类型
+
+* 可以使用Byte.parseByte方法将数值型转换为 byte对象  
+
+ 这个parseByte方法是有符号的，也就是说一个byte中能存储的范围是 -128 ~ 128  
+ 如果需要，如果需要 0 - 256的数据，可以使用 Integer.toHexString(b & 0xff)  
+ 这个为运算是明确的，但是为运算跟负值之间的转换，没明白。
+
+* 简单的byte转换  
+
+ ```
+ byte b = Byte.parseByte("16");
+ System.out.println(Integer.toHexString(b));
+ ```
+
+* System.out.print输出的byte对象为10进行形式
+
+* String -> byte[]  
+
+ * asc2字符， 1个byte长
+ * 汉字， 通常是3个byte长
+
+* Long -> byte[]
+
+ * Long型为固定长度的变量，转换为byte[]也占用固定长度，8个字节
+ * 长度为 Long.SIZE / Byte.SIZE = 64(bit) / 8(bit) = 8
+
+* Long -> hex string -> byte[]
+
+ * 这种方法可以缩小存储数据占用的空间
+
+ * 原理是 Long为2进制，hex为16进制， 缩短了串的长度  
+ 然后，16进制最大数为ff，可以2位保存在一个byte中，又节省了空间。
+ 
+ * apache的jar包能提供这样的功能  
+ ```
+    String s = "1476450601";
+    byte[] byteArr = Hex.decodeHex(s.toCharArray());
+    char[] charArr = Hex.encodeHex(byteArr3);
+    for (char c : charArr) {
+        System.out.println(c);
+    }
+ ```
+ 
+ * 或者javax下的方法
+ ```
+    public static String toHexString(byte[] array) {
+        return DatatypeConverter.printHexBinary(array);
+    }
+
+    public static byte[] toByteArray(String s) {
+        return DatatypeConverter.parseHexBinary(s);
+    }
+ ```
+
+
+
