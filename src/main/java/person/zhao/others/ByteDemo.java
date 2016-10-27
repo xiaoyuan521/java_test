@@ -1,5 +1,8 @@
 package person.zhao.others;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 
@@ -43,12 +46,20 @@ public class ByteDemo {
         System.out.println(byteArr2.length);
         
         char[] charArr = Hex.encodeHex(byteArr2);
-        System.out.println(new String(charArr));
+        String str = new String(charArr);
+        Long lresult = Long.parseLong(str, 16);
+        System.out.println(str + " - " + lresult);
+    }
+    
+    public void p4() throws UnsupportedEncodingException{
+        byte[] byteArray = new byte[] {87, 79, 87, 46, 46, 46};
+        String value = new String(byteArray, StandardCharsets.UTF_8);
+        System.out.println(value);
     }
     
     public static void main(String[] args) {
         try {
-            new ByteDemo().p3();
+            new ByteDemo().p4();
         } catch (Exception e) {
             e.printStackTrace();
         }
